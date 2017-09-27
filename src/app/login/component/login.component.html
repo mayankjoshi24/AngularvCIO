@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="loginarea">
+
+  <div class="h3tag">
+  <h3>SIGN IN TO YOUR ACCOUNT</h3>
+  </div>
+  <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value) ">
+    <div class="row">
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-4">
+
+        <div class="form-group">
+          <input type="text" class="form-control" id="" placeholder="Subdomain" [formControl]="complexForm.controls['subdomain']">
+        </div> 
+
+        <div class="form-group">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"   [formControl]="complexForm.controls['username']">
+           <div *ngIf="complexForm.controls['username'].touched && complexForm.controls['username'].hasError('required')" ></div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [formControl]="complexForm.controls['password']"  >
+            <div *ngIf="complexForm.controls['password'].touched && complexForm.controls['password'].hasError('required')"></div>
+        </div>
+        
+        <a href="#">Forgot password?</a>
+       
+      </div>
+    </div>
+    <div class="button">
+     <button type="submit" class="btn btn-primary"  [disabled]="!complexForm.valid" >Submit</button>
+    </div>
+  </form>
+
+ 
+
+</div>
+ <app-footer></app-footer>

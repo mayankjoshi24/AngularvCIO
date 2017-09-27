@@ -1,0 +1,112 @@
+.sidebar{
+    margin-top:50px;
+}
+
+
+.example-sidenav-content {
+  display: flex;
+
+  /*align-items: center;*/
+  /*justify-content: center;*/
+}
+
+.signout{
+    margin-left:300px;
+}
+
+
+.box.box-info {
+    border-top-color: #00c0ef;
+}
+
+.box {
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+ .drawer{
+    
+    background-color: #f5f5f5;
+}
+
+.example-card {
+  width: 400px;
+  margin-top:50px;
+  margin-left:200px;
+}
+
+.example-header-image {
+   background-image: url('/assets/images/images.png');
+  background-size: cover;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.example-sidenav-content1{
+    padding-top:30px;
+
+}
+
+.example-card1{
+  width: 400px;
+  margin-top:50px;
+  margin-left:30px;
+}
+
+.example-header-image1 {
+   background-image: url('/assets/images/ubisoft.png');
+  background-size: cover;
+}
+
+
+.example-headers-align .mat-expansion-panel-header-title, 
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-sidenav-content2{
+    padding-top:30px;
+    padding-bottom:40px;
+}

@@ -1,0 +1,55 @@
+<div class="sidebar">
+    <md-sidenav-container fullscreen>
+        <md-sidenav #sidenav mode="side" opened="true">
+
+            <md-toolbar>
+                <md-toolbar>
+                    <md-icon>apps</md-icon>
+                    <a class="nav-link">MENU</a>
+                </md-toolbar>
+                <md-toolbar-row>
+                    <md-icon>dashboard</md-icon>
+                    <a class="nav-link" routerLink="/dashstart">Dashboard</a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon>perm_contact_calendar</md-icon>
+                    <a class="nav-link" routerLink="/contacts">Contacts</a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon>location_on</md-icon>
+                    <a class="nav-link" routerLink="/location">Location</a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon>vpn_key</md-icon>
+                    <a class="nav-link" routerLink="/password">Password</a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon>settings</md-icon>
+                    <a class="nav-link" href="">Configuration</a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon>email</md-icon>
+                    <a class="nav-link" routerLink="/email">Email</a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon></md-icon>
+                    <a class="nav-link" href="#"></a>
+                </md-toolbar-row>
+                <md-toolbar-row>
+                    <md-icon></md-icon>
+                    <a class="nav-link" href="#"></a>
+                </md-toolbar-row>
+
+            </md-toolbar>
+        </md-sidenav>
+        <md-toolbar color="primary">
+            <!--<button md-button (click)="sidenav.toggle()">
+      <md-icon>menu</md-icon>
+    </button>-->
+            <span>vCIO Pro</span>
+            <div class="signout">
+                <button class="btn btn-info" routerLink="/organisation">Organisation</button>
+            </div>
+        </md-toolbar>
+    </md-sidenav-container>
+</div>

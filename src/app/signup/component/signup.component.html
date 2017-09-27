@@ -1,0 +1,296 @@
+<app-header></app-header>
+<div class="total">
+  <div class="col-md-12">
+    <h1> Sign up instantly for <img src="/assets/images/logo.png" alt=""> </h1>
+  </div>
+  <div class="jumbotron">
+
+    <div class="row">
+
+      <div class="col-lg-6 col-sm-7">
+        <div class="well">
+          <h4>Account Information</h4>
+          <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+            <div class="form-group">
+              <label class="control-label"><abbr title="required">*</abbr>Plan</label>
+              <input class="form-control" type="text" placeholder="Basic user license-$179/month" disabled>
+              <!-- The hasError method can work with the built in validators but custom validators as well -->
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['companyName'].valid && complexForm.controls['companyName'].touched}">
+                  <label class="control-label"><abbr title="required">*</abbr>Company Name</label>
+                  <input class="form-control" type="text" placeholder="Company Name" [formControl]="complexForm.controls['companyName']">
+                  <div *ngIf="complexForm.controls['companyName'].hasError('required') && complexForm.controls['companyName'].touched" ></div>
+                  <div *ngIf="complexForm.controls['companyName'].hasError('maxlength') && complexForm.controls['companyName'].touched" ></div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="control-label"><abbr title="required">*</abbr>vCIOPro Address</label>
+                <div class="input-group">
+                  <input class="form-control" type="text" placeholder="">
+                  <span class="input-group-addon" id="basic-addon2">.vCIOPro.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="userinfo">
+              <h4>Your Information</h4>
+              <p> <strong>Already have an vCIOPro ID?</strong> </p>
+              <p> <a ui-sref="Login" href="http://localhost:4200/login">Sign in here</a> to acess your account. </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['firstName'].valid && complexForm.controls['firstName'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>First Name</label>
+                    <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="First Name" [formControl]="complexForm.controls['firstName']">
+                    <div *ngIf="complexForm.controls['firstName'].hasError('required') && complexForm.controls['firstName'].touched" ></div>
+                    <div *ngIf="complexForm.controls['firstName'].hasError('minlength') && complexForm.controls['firstName'].touched" ></div>
+                    <div *ngIf="complexForm.controls['firstName'].hasError('maxlength') && complexForm.controls['firstName'].touched" ></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['lastName'].valid && complexForm.controls['lastName'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Last Name</label>
+                    <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="Last Name" [formControl]="complexForm.controls['lastName']">
+                    <!-- The hasError method can work with the built in validators but custom validators as well -->
+                    <div *ngIf="complexForm.controls['lastName'].hasError('required') && complexForm.controls['lastName'].touched" ></div>
+                    <div *ngIf="complexForm.controls['lastName'].hasError('minlength') && complexForm.controls['lastName'].touched" ></div>
+                    <div *ngIf="complexForm.controls['lastName'].hasError('maxlength') && complexForm.controls['lastName'].touched" ></div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['email'].valid && complexForm.controls['email'].touched}">
+                <label class="control-label"><abbr title="required">*</abbr>Email</label>
+                <input class="form-control" type="email" placeholder="Email" [formControl]="complexForm.controls['email']">
+                <div *ngIf=" complexForm.controls['email'].touched && complexForm.controls['email'].hasError('required')" ></div>
+                <div *ngIf="complexForm.controls['email'].touched  && complexForm.controls['email'].hasError('pattern')" ></div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['password'].valid && complexForm.controls['password'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Password</label>
+                    <input class="form-control" type="password" placeholder="Password" [formControl]="complexForm.controls['password']">
+                    <div *ngIf="complexForm.controls['password'].hasError('required') && complexForm.controls['password'].touched" ></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['confirmpassword'].valid && complexForm.controls['confirmpassword'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Confirm Password</label>
+                    <input class="form-control" type="password" placeholder="Confirm Password" [formControl]="complexForm.controls['confirmpassword']">
+                    <div *ngIf="complexForm.controls['confirmpassword'].hasError('required') && complexForm.controls['confirmpassword'].touched"
+                     ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="billinginfo">
+              <h4>Billing Information</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['email'].valid && complexForm.controls['email'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Email</label>
+                    <input class="form-control" type="text" placeholder="Email" [formControl]="complexForm.controls['billingemail']">
+
+                    <div *ngIf="complexForm.controls['billingemail'].hasError('required') && complexForm.controls['billingemail'].touched" ></div>
+                    <div *ngIf="complexForm.controls['billingemail'].hasError('pattern') && complexForm.controls['billingemail'].touched" ></div>
+
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['phonenumber'].valid && complexForm.controls['phonenumber'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Phone Number</label>
+                    <input (keypress)="_NumberOnly($event)" class="form-control" type="text" placeholder="(999)999-9999" [formControl]="complexForm.controls['phonenumber']"
+                      maxlength="10">
+                    <div *ngIf="complexForm.controls['phonenumber'].hasError('required') && complexForm.controls['phonenumber'].touched" ></div>
+                    <div *ngIf="complexForm.controls['phonenumber'].hasError('maxlength') && complexForm.controls['phonenumber'].touched" ></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['address'].valid && complexForm.controls['address'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Address</label>
+                    <input class="form-control" type="text" placeholder="Address" [formControl]="complexForm.controls['address']">
+                    <div *ngIf="complexForm.controls['address'].hasError('required') && complexForm.controls['address'].touched" ></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['address'].valid && complexForm.controls['address2'].touched}">
+                    <label class="control-label">Address 2</label>
+                    <input class="form-control" type="text" placeholder="Address 2 " [formControl]="complexForm.controls['address2']">
+                    <div *ngIf="complexForm.controls['address2'].hasError('required') && complexForm.controls['address2'].touched" ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['country'].valid && complexForm.controls['country'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Country</label>
+                    <select class="form-control" formControlName="country" [formControl]="complexForm.controls['country']" (change)="fetchStates($event.target.value)">
+                        <option value="0">--Select Country--</option>  
+                        <option *ngFor="let type of countries" [value]="type.ID">{{type.Name}}</option>
+                    </select>
+                    <div *ngIf="complexForm.controls['country'].hasError('required') && complexForm.controls['country'].touched"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['state'].valid && complexForm.controls['state'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>State</label>
+                    <select class="form-control" formControlName="state" [formControl]="complexForm.controls['state']">
+                       <option *ngFor="let type of states" [value]="type.id">{{type.Name}}</option>
+                    </select>
+                    <div *ngIf="complexForm.controls['state'].hasError('required') && complexForm.controls['state'].touched"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['city'].valid && complexForm.controls['city'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>City</label>
+                    <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="City " [formControl]="complexForm.controls['city']">
+                    <div *ngIf="complexForm.controls['city'].hasError('required') && complexForm.controls['city'].touched"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['city'].valid && complexForm.controls['postalcode'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Zip / Postal Code</label>
+                    <input (keypress)="_NumberOnly($event)" class="form-control" type="text" placeholder="Zip / Postal Code " [formControl]="complexForm.controls['postalcode']">
+                    <div *ngIf="complexForm.controls['postalcode'].hasError('required') && complexForm.controls['postalcode'].touched" ></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="creditcard">
+              <h4>Credit Card</h4>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['ccfirstname'].valid && complexForm.controls['ccfirstname'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>First Name</label>
+                    <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="First Name " [formControl]="complexForm.controls['ccfirstname']">
+                    <div *ngIf="complexForm.controls['ccfirstname'].hasError('required') && complexForm.controls['ccfirstname'].touched" ></div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['cclastname'].valid && complexForm.controls['cclastname'].touched}">
+                    <label class="control-label"><abbr title="required">*</abbr>Last Name</label>
+                    <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="Last Name " [formControl]="complexForm.controls['cclastname']">
+                    <div *ngIf="complexForm.controls['cclastname'].hasError('required') && complexForm.controls['cclastname'].touched" ></div>
+                  </div>
+                </div>
+              </div>
+
+              <label class="control-label"><abbr title="required">*</abbr>Card Number</label>
+              <div class="input-group" [ngClass]="{'has-error':!complexForm.controls['CardNo'].valid && complexForm.controls['CardNo'].touched}">
+                <input (keypress)="_NumberOnly($event)" class="form-control" type="text" placeholder="" [formControl]="complexForm.controls['CardNo']"
+                  maxlength="16">
+                <span class="input-group-addon cards"> <img src="./assets/images/visa.png" alt=""> <img src="./assets/images/mastercard.png" alt="">  <img src="./assets/images/american_express.png" alt=""> </span>
+                <div *ngIf="complexForm.controls['CardNo'].hasError('required') && complexForm.controls['CardNo'].touched"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label class="control-label"><abbr title="required">*</abbr>Security Code</label>
+                  <div class="input-group" [ngClass]="{'has-error':!complexForm.controls['SecurityCode'].valid && complexForm.controls['SecurityCode'].touched}">
+                    <input (keypress)="_NumberOnly($event)" class="form-control" type="text" placeholder="Security Code" [formControl]="complexForm.controls['SecurityCode']" maxlength="4">
+                    <span class="input-group-addon cards"> <img src="./assets/images/SecurityCode.png" alt="">  </span>
+
+                    <div *ngIf="complexForm.controls['SecurityCode'].hasError('required') && complexForm.controls['SecurityCode'].touched"></div>
+
+                  </div>
+                  <p class="msg-below">3 or 4 digits on the back of the card</p>
+                </div>
+                <div class="col-md-6">
+                   <label class="control-label"><abbr title="required">*</abbr>Expiry Date</label>
+                   <input  class="form-control" type="date"  [formControl]="complexForm.controls['ExpiryDate']">
+                  <!--<kendo-datepicker>
+                    <ng-template kendoCalendarCellTemplate let-date>
+                      <span [ngClass]="isMeeting(date)">{{date.getDate()}}</span>
+                    </ng-template>
+                  </kendo-datepicker>-->
+                  <!--<md-form-field>
+                    <input mdInput [mdDatepicker]="picker" placeholder="Expiry Date">
+                    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+                    <md-datepicker #picker></md-datepicker>
+                  </md-form-field>-->
+                </div>
+              </div>
+            </div>
+            <div class="yellow-box ng-scope" ng-if="Priceshow">
+              <div class="well highlight-yellow">
+                <p>
+                  You will be charged a total of
+                  <b>
+                                            $<span class="cost ng-binding">452</span>
+                                        </b> which includes a
+                  <b>
+                                            $<span class="cost ng-binding">452</span>
+                                        </b> total cost for activation charge and Service tax of 5% for
+                  the first month of service.<br> Your card will then be charged
+                  <b>
+                                            $<span class="cost ng-binding">452</span>
+                                        </b> each month.
+                </p>
+                <p>By continuing you agree to the <a href="">Terms of Service</a>, <a href="">Privacy</a> and <a href="">Refund</a>                  policies.</p>
+              </div>
+              <!--<input type="text" class="form-control" autofocus>-->
+              <input type="submit" id="process" value="Process my order" class="btn btn-primary btn-order ">
+              <p class="msg-below small">
+                Please be patient as account creation may take up to two minutes
+              </p>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-sm-5">
+        <h3 class="right-side-txt">Freeing Minds® for IT Departments &amp; IT Providers</h3>
+        <ul class="list-unstyled">
+          <li>
+            <i class="fa fa-fw  fa-check"></i> Simple, transparent pricing
+          </li>
+          <li>
+            <i class="fa fa-fw  fa-check"></i> Cancel at any time
+          </li>
+          <li>
+            <i class="fa fa-fw  fa-check"></i> Start managing your IT business within minutes
+          </li>
+        </ul>
+        <div class="quote">
+          <blockquote>
+            <p>"Prior to vCIOPro, our team struggled to have a consistent and effective process for truly and deeply building
+              our relationships with our clients. vCIOPro has streamlined this process, increased our revenues with all of
+              our clients, created a clear transparency on their satisfaction levels and an overall great improvement to
+              our level of service"</p>
+            <span><b><i>-Mark Nagel VP Operations at IT Partners</i></b> </span>
+          </blockquote>
+        </div>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+</div>
+<app-footer></app-footer>

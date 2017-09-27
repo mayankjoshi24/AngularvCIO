@@ -1,0 +1,112 @@
+<app-dashboard></app-dashboard>
+    
+<div class="kendo">
+    <div class="container">
+        <div class="addcontactsmodal">
+            <app-addcontactsmodal></app-addcontactsmodal>
+        </div>
+
+
+        <kendo-grid selectable="true" [selectedKeys]="selectedKeys" [kendoGridSelectBy]="rowSelectionKey" [data]="gridDat" [pageSize]="state.take"
+            [skip]="state.skip" [sort]="state.sort" [filter]="state.filter" [sortable]="true" [pageable]="true" [height]="400"
+            [filterable]="true" (pageChange)="pageChange($event)" (dataStateChange)="dataStateChange($event)">
+            <kendo-grid-column field="OrgId" title="Name" width="100" [filterable]="false">
+            </kendo-grid-column>
+            <kendo-grid-column field="OrgName" title="Email" width="150">
+            </kendo-grid-column>
+            <kendo-grid-column field="ShortName" title="Phone" width="150">
+            </kendo-grid-column>
+            <kendo-grid-column field="FirstName" title="Title" width="100" [filterable]="false">
+            </kendo-grid-column>
+            <kendo-grid-column field="LastName" title="Location" width="100" [filterable]="false">
+            </kendo-grid-column>
+            <kendo-grid-column field="Actions" title="Actions" width="150" [filterable]="false">
+                <ng-template kendoGridCellTemplate>
+
+
+                    <button class="btn btn-outline-warning btn-sm" (click)="openModal(template)">Edit</button>
+                    <button class="btn btn-outline-danger btn-sm" (click)="openModalforDelete(Deletetemplate)">Delete</button>
+                </ng-template>
+            </kendo-grid-column>
+        </kendo-grid>
+
+    </div>
+
+</div>
+
+<template #template>
+
+    <form [formGroup]="complexForm" (ngSubmit)="onSave()">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Edit Organisation</h4>
+            <button type="button " class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="organisation.OrgId" [formControl]="complexForm.controls['OrgId']" disabled>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="organisation.OrgName" [formControl]="complexForm.controls['OrgName']">
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="organisation.ShortName" [formControl]="complexForm.controls['ShortName']">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="organisation.FirstName" [formControl]="complexForm.controls['FirstName']">
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="organisation.LastName" [formControl]="complexForm.controls['LastName']">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="organisation.Phone" [formControl]="complexForm.controls['Phone']">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" type="email" [(ngModel)]="organisation.Email" [formControl]="complexForm.controls['Email']">
+            </div>
+
+            <div class="submitbutton">
+                <button class="btn btn-primary submit" (click)="modalRef.hide()">Update</button>
+            </div>
+        </div>
+    </form>
+</template>
+<template #Deletetemplate>
+
+    <form [formGroup]="complexForm" (ngSubmit)="onSave()">
+
+    </form>
+</template>
+
+<app-footer></app-footer>

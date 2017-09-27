@@ -1,0 +1,83 @@
+<button type="button" class="btn btn-outline-primary" (click)="openModal(template)"><i class="fa fa-plus" aria-hidden="true"></i> &nbsp; ADD LOCATION</button>
+
+<template #template>
+    <div class="row">
+        <form [formGroup]="complexForm" (ngSubmit)="submitForm(complexForm.value)">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Add Location</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="adddata">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="Name" [formControl]="complexForm.controls['Name']">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input (keypress)="_CharacterOnly($event)" class="form-control" type="text" placeholder="City" [formControl]="complexForm.controls['City']">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input (keypress)="_NumberOnly($event)" class="form-control" type="text" placeholder="Phone" [formControl]="complexForm.controls['Phone']">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input (keypress)="_NumberOnly($event)" class="form-control" type="text" placeholder="Zip Code" [formControl]="complexForm.controls['Zip']">
+                            </div>
+                        </div>
+                    </div>
+
+                       <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['country'].valid && complexForm.controls['country'].touched}">
+                    <select class="form-control" formControlName="country" [formControl]="complexForm.controls['country']" (change)="fetchStates($event.target.value)">
+                        <option value="1">--Select Country--</option>  
+                        <option *ngFor="let type of countries" [value]="type.ID">{{type.Name}}</option>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group" [ngClass]="{'has-error':!complexForm.controls['state'].valid && complexForm.controls['state'].touched}"> 
+                    <select class="form-control" formControlName="state" [formControl]="complexForm.controls['state']">
+                       <option *ngFor="let type of states" [value]="type.id">{{type.Name}}</option>
+                    </select>
+                   
+                  </div>
+                </div>
+              </div>
+
+                    <div class="txtarea">
+                        <div class="form-group">
+                            <textarea formControlName="Address1" class="form-control txtarea" type="text" placeholder="Address1" [formControl]="complexForm.controls['Address1']"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea formControlName="Address2" class="form-control txtarea" type="text" placeholder="Address2" [formControl]="complexForm.controls['Address2']"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="submitbtn">
+                    <button class="btn btn-primary submit" (click)="modalRef.hide()">Submit</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</template>
